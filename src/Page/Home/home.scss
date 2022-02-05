@@ -13,6 +13,7 @@ main.dark .header__select{
 }
 main {
  display: flex;
+	justify-content: space-between;
 }
 .home__page {
  width: 100%;

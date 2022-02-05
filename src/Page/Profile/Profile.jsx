@@ -11,7 +11,7 @@ function Profile() {
 	const [user2, setUser2] = React.useState([]);
 	const [profel, setProfel] = React.useState({});
 
-  const [users3, setUser3] = React.useState({});
+	const [users3, setUser3] = React.useState({});
 
 	React.useEffect(() => {
 		fetch('https://reqres.in/api/users/' + id)
@@ -42,10 +42,9 @@ function Profile() {
 			if (dataClise?.length > 0) {
 				setUser2([...dataClise]);
 			}
-
 		})();
 
-    (async () => {
+		(async () => {
 			const response = await fetch(
 				'https://jsonplaceholder.typicode.com/photos',
 			);
@@ -55,8 +54,6 @@ function Profile() {
 				setUser3(slice);
 			}
 		})();
-
-    
 	});
 
 	return (
@@ -66,7 +63,7 @@ function Profile() {
 					className='profel__banner'
 					src={Baner}
 					alt=''
-					width={1386}
+					width={1200}
 					height={280}
 				/>
 			</div>
@@ -151,12 +148,10 @@ function Profile() {
 					<li className='profel__peges--list'>
 						<img src={search} alt='' />
 					</li>
-
-					
 				</ul>
-        <div className='profel__peges--bag'>
-						<p className='profel__page--text'>Recommended channel</p>
-					</div>
+				<div className='profel__peges--bag'>
+					<p className='profel__page--text'>Recommended channel</p>
+				</div>
 			</section>
 			{/* Audio */}
 			<section className='audio'>
@@ -164,13 +159,15 @@ function Profile() {
 					{users.length > 0 &&
 						users.map((user) => (
 							<li className='audio__list'>
-								<img
-									className='audio__img'
-									src={user.url}
-									alt=''
-									width={500}
-									height={250}
-								/>
+								<NavLink to={'/photos/' + user.id}>
+									<img
+										className='audio__img'
+										src={user.url}
+										alt=''
+										width={500}
+										height={250}
+									/>
+								</NavLink>
 								<div className='audio__box'>
 									<h4 className='audio__heading'>{user.title}</h4>
 									<p className='aoudio__text'>
@@ -203,7 +200,7 @@ function Profile() {
 											height={35}
 										/>
 										<p className='Subscriptions__text'>
-                    Flora Benson
+											Flora Benson
 										</p>
 									</NavLink>
 								</li>
@@ -216,24 +213,28 @@ function Profile() {
 				</ul>
 			</section>
 
-      {/* vedio */}
-      <section className='vedio'>
-         <h4>Margaret Phelps videos</h4>
-         <ul className='home__item home__item2'>
-						{users3.length > 0 &&
-							users3.map((user) => (
-								<li key={user.id} className='home__list'>
-									<img className='home__img'
+			{/* vedio */}
+			<section className='vedio'>
+				<h4>Margaret Phelps videos</h4>
+				<ul className='home__item home__item2'>
+					{users3.length > 0 &&
+						users3.map((user) => (
+							<li key={user.id} className='home__list'>
+								<NavLink to={'/photos/' + user.id}>
+									<img
+										className='home__img'
 										src={user.thumbnailUrl}
 										width={180}
 										height={100}
 									/>
-									<h4 className='home__heading'>{user.title}</h4>
-                           <p className='hero__text'>34k views  ·  5 months ago</p>
-								</li>
-							))}
-        </ul>
-      </section>
+								</NavLink>
+
+								<h4 className='home__heading'>{user.title}</h4>
+								<p className='hero__text'>34k views · 5 months ago</p>
+							</li>
+						))}
+				</ul>
+			</section>
 		</div>
 	);
 }

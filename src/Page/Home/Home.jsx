@@ -5,6 +5,7 @@ import './home.scss';
 // img
 import Oval from '../../Assets/img/Oval.svg';
 import food from '../../Assets/img/Food-Drink.svg';
+import { NavLink } from 'react-router-dom';
 function Home() {
 	const [users, setUser] = React.useState({});
 	const [userName, setUserName] = React.useState({});
@@ -45,64 +46,78 @@ function Home() {
 						{users.length > 0 &&
 							users.map((user) => (
 								<li key={user.id} className='home__list'>
-									<img className='home__img'
-										src={user.thumbnailUrl}
-										width={180}
-										height={100}
-									/>
+									<NavLink to={'/photos/' + user.id}>
+										<img
+											className='home__img'
+											src={user.thumbnailUrl}
+											width={180}
+											height={100}
+										/>
+									</NavLink>
 									<h4 className='home__heading'>{user.title}</h4>
-                           <p className='hero__text'>34k views  ·  5 months ago</p>
+									<p className='hero__text'>
+										34k views · 5 months ago
+									</p>
 								</li>
 							))}
 					</ul>
 				</nav>
-            {/* Recommended */}
-             <section className='recommended'>
-            <h3 className='recommended__heading'>Recommended</h3>
-             <ul className='recommended__item'>
+				{/* Recommended */}
+				<section className='recommended'>
+					<h3 className='recommended__heading'>Recommended</h3>
+					<ul className='recommended__item'>
+						{userName.length > 0 &&
+							userName.map((users) => (
+								<li className='recommended__list'>
+									<NavLink to={'/photos/' + users.id}>
+										<img
+											className='recommended__img'
+											src={users.url}
+											width={500}
+											height={250}
+										/>
+									</NavLink>
 
-                {
-                   userName.length > 0 && userName.map((users) => (
-                    <li className='recommended__list'>
-                    <img className='recommended__img'
-										src={users.url}
-										width={500}
-										height={250}
-									/>
-									<h4 className='recommended__heading'>{users.title}</h4>
-                           <p className='hero__text'>34k views  ·  5 months ago</p>
-                    </li>
-            ))}
-                
-             </ul>
-         </section>
-         {/* doof */}
-
-         <section className='food'>
-           <div className='food__box'>
-           <img src={food} alt="" />
-            <h3 className='food__heading'>Food & Drink</h3>
-            <p className='food__text'>Recommended channel for you</p>
-           </div>
-            <ul className='home__item'>
-            {users.length > 0 &&
-							users.map((user) => (
-								<li key={user.id} className='home__list'>
-									<img className='home__img'
-										src={user.thumbnailUrl}
-										width={180}
-										height={100}
-									/>
-									<h4 className='home__heading'>{user.title}</h4>
-                           <p className='hero__text'>34k views  ·  5 months ago</p>
+									<h4 className='recommended__heading'>
+										{users.title}
+									</h4>
+									<p className='hero__text'>
+										34k views · 5 months ago
+									</p>
 								</li>
 							))}
-            </ul>
-         </section>
+					</ul>
+				</section>
+				{/* doof */}
 
+				<section className='food'>
+					<div className='food__box'>
+						<img src={food} alt='' />
+						<h3 className='food__heading'>Food & Drink</h3>
+						<p className='food__text'>Recommended channel for you</p>
+					</div>
+					<ul className='home__item'>
+						{users.length > 0 &&
+							users.map((user) => (
+								<li key={user.id} className='home__list'>
+									<NavLink to={'/photos/' + user.id}>
+										<img
+											className='home__img'
+											src={user.thumbnailUrl}
+											width={180}
+											height={100}
+										/>
+									</NavLink>
+
+									<h4 className='home__heading'>{user.title}</h4>
+									<p className='hero__text'>
+										34k views · 5 months ago
+									</p>
+								</li>
+							))}
+					</ul>
+				</section>
 			</div>
-
-        
 		</>
 	);
 }

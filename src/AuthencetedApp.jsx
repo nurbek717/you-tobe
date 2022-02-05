@@ -8,7 +8,8 @@ import Footer from './Components/Footer/Footer';
 //Pages
 import Home from './Page/Home/Home'
 import Profil from './Page/Profile/Profile'
-
+import Photos from './Page/photos/photos'
+ 
 function AuthenticatedApp() {
 	const { theme } = React.useContext(Context);
 	 return <div className='container'>
@@ -20,6 +21,7 @@ function AuthenticatedApp() {
 						<Routes>
 							<Route path='/home' element={<Home/>}/>
 							<Route path='/peges/:id' element={<Profil/>}/>
+							<Route path='/photos/:id' element={<Photos/>}/>
 						</Routes>
 					</main>
 					
